@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+convertish/__init__.py
+convertish.egg-info/PKG-INFO
+convertish.egg-info/SOURCES.txt
+convertish.egg-info/dependency_links.txt
+convertish.egg-info/entry_points.txt
+convertish.egg-info/not-zip-safe
+convertish.egg-info/top_level.txt
