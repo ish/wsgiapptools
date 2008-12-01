@@ -16,6 +16,13 @@ class Converter(object):
         self.converter_options = k.pop('converter_options', {})
         
     def fromType(self, value, converter_options={}):
+        """ convert from i.e. for NumberToString converter - from number to string"""
+    
+    def toType(self, value, converter_options={}):
+        """ convert to i.e. for NumberToString converter - to number from string"""
+
+class NullConverter(Converter):
+    def fromType(self, value, converter_options={}):
         if value is None:
             return None
         return value
@@ -24,9 +31,6 @@ class Converter(object):
         if value is None:
             return None
         return value
-
-class NullConverter(Converter):
-    pass
 
 
 class NumberToStringConverter(Converter):
