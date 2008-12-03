@@ -1,13 +1,20 @@
 from peak.rules import abstract, when
 import schemaish
+
 try:
     import decimal
     haveDecimal = True
 except ImportError:
     haveDecimal = False
-from formish import validation, file
 from datetime import date, time
 
+class ConvertError(Exception):
+    """
+    exception to indicate failure in converting values
+    """
+    def __init__(self, message):
+        Exception.__init__(self, message)
+        self.message = message
 
 class Converter(object):
     
@@ -51,7 +58,7 @@ class NumberToStringConverter(Converter):
         try:
             value = self.cast(value)
         except (ValueError, ArithmeticError):
-            raise validation.FieldValidationError("Not a valid number")
+            raise ConvertError("Not a valid number")
         return value
         
         
@@ -79,7 +86,7 @@ class FileToStringConverter(Converter):
     def toType(self, value, converter_options={}):
         if value is None or value == '':
             return None
-        return file.File(None,value,None)
+        return schemaish.type.File(None,value,None)
     
 class BooleanToStringConverter(Converter):
     
@@ -95,7 +102,7 @@ class BooleanToStringConverter(Converter):
             return None
         value = value.strip()
         if value not in ('True', 'False'):
-            raise validation.FieldValidationError('%r should be either True or False'%value)
+            raise ConvertError('%r should be either True or False'%value)
         return value == 'True'
     
 class DateToStringConverter(Converter):
@@ -115,11 +122,11 @@ class DateToStringConverter(Converter):
         try:
             y, m, d = [int(p) for p in value.split('-')]
         except ValueError:
-            raise validation.FieldValidationError('Invalid date')
+            raise ConvertError('Invalid date')
         try:
             value = date(y, m, d)
         except ValueError, e:
-            raise validation.FieldValidationError('Invalid date: '+str(e))
+            raise ConvertError('Invalid date: '+str(e))
         return value
 
 
@@ -154,12 +161,12 @@ class TimeToStringConverter(Converter):
                 h, m, s = parts
             h, m, s, ms = int(h), int(m), int(s), int(ms)
         except:
-            raise validation.FieldValidationError('Invalid time')
+            raise ConvertError('Invalid time')
         
         try:
             value = time(h, m, s, ms)
         except ValueError, e:
-            raise validation.FieldValidationError('Invalid time: '+str(e))
+            raise ConvertError('Invalid time: '+str(e))
             
         return value
         
@@ -182,10 +189,10 @@ class DateToDateTupleConverter(Converter):
             try:
                 V = [int(v) for v in value]
             except ValueError:
-                raise validation.FieldValidationError('Invalid Number')
+                raise ConvertError('Invalid Number')
             value = date(*V)
         except (TypeError, ValueError), e:
-            raise validation.FieldValidationError('Invalid date: '+str(e))
+            raise ConvertError('Invalid date: '+str(e))
         return value
         
 
@@ -273,7 +280,7 @@ class SequenceToStringConverter(Converter):
             return out
         else:
             if delimiter != '\n' and len(value.split('\n')) > 1:
-                raise validation.FieldValidationError("More than one line found for csv with delimiter=\'%s\'"%delimiter)
+                raise ConvertError("More than one line found for csv with delimiter=\'%s\'"%delimiter)
             if delimiter == '\n':
                 out = value.splitlines()
             else:
