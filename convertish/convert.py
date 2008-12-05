@@ -8,13 +8,20 @@ except ImportError:
     haveDecimal = False
 from datetime import date, time
 
+
 class ConvertError(Exception):
     """
-    exception to indicate failure in converting values
+    Exception to indicate failure in converting values.
     """
+
     def __init__(self, message):
         Exception.__init__(self, message)
         self.message = message
+
+    def __str__(self):
+        return self.message
+    __unicode__ = __str__
+
 
 class Converter(object):
     
