@@ -4,14 +4,28 @@ from Cookie import SimpleCookie
 ENVIRON_KEY = 'wsgiapptools.cookies'
 
 
-def get_cookie_cutter(environ):
+def set_cookie(environ, cookie):
     """
-    Find the CookieCutter instance from the WSGI environ.
+    Set a cookie using the Cookies in the WSGI environ.
+    """
+    return get_cookies(environ).set_cookie(cookie)
+
+
+def delete_cookie(environ, cookie_name):
+    """
+    Delete a cookie using the Cookies in the WSGI environ.
+    """
+    return get_cookies(environ).delete_cookie(cookie_name)
+
+
+def get_cookies(environ):
+    """
+    Find the Cookies instance from the WSGI environ.
     """
     return environ[ENVIRON_KEY]
 
 
-class CookieCutter(object):
+class Cookies(object):
     """
     Cookie manager, associated with a WSGI environ.
     """
@@ -71,7 +85,7 @@ def cookies_middleware_factory(app):
             response_headers.extend(('Set-Cookie', header) for header in cutter.headers)
             # Call wrapped app's start_response.
             return start_response(status, response_headers, exc_info)
-        environ[ENVIRON_KEY] = CookieCutter(environ)
+        environ[ENVIRON_KEY] = Cookies(environ)
         return app(environ, _start_response)
     return middleware
 
