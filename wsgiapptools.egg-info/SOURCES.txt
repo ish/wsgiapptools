@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+wsgiapptools/__init__.py
+wsgiapptools.egg-info/PKG-INFO
+wsgiapptools.egg-info/SOURCES.txt
+wsgiapptools.egg-info/dependency_links.txt
+wsgiapptools.egg-info/entry_points.txt
+wsgiapptools.egg-info/top_level.txt
+wsgiapptools.egg-info/zip-safe
