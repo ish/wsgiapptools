@@ -1,0 +1,26 @@
+wsgiapptools is a collection of simple tools for WSGI applications, e.g. tools
+that work in a WSGI stack and help make applications easier to write.
+
+cookies
+-------
+
+Simple cookie management.
+
+A "CookieCutter" is added to the WSGI environ by the cookies middleware. The
+cookie cutter can be retrieved from the environ at any time and cookies can be
+set and deleted at any time (and from anywhere) until the response headers are
+sent.
+
+
+flash (requires cookies)
+------------------------
+
+Simple "flash" message handling.
+
+Flash messages (yes, you can set more than one) can be set with a single call.
+Any flash messages are later converted to cookies by the flash WSGI middleware.
+
+A function is also provided to extract the flash messages from the request's
+cookies for display. The flash cookies are automatically removed at the same
+time.
+
