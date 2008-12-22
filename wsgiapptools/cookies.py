@@ -59,7 +59,7 @@ class CookieCutter(object):
         self.set_cookie((cookie_name, None))
 
 
-def middleware_factory(app):
+def cookies_middleware_factory(app):
     """
     Create a cookie middleware WSGI application around the given WSGI
     application.
