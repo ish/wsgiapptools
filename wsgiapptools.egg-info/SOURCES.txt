@@ -1,6 +1,10 @@
+.gitignore
 setup.cfg
 setup.py
+wsgiapptools/README
 wsgiapptools/__init__.py
+wsgiapptools/cookies.py
+wsgiapptools/flash.py
 wsgiapptools.egg-info/PKG-INFO
 wsgiapptools.egg-info/SOURCES.txt
 wsgiapptools.egg-info/dependency_links.txt
