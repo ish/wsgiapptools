@@ -1,5 +1,4 @@
 .gitignore
-setup.cfg
 setup.py
 wsgiapptools/README
 wsgiapptools/__init__.py
@@ -11,4 +10,3 @@ wsgiapptools.egg-info/dependency_links.txt
 wsgiapptools.egg-info/entry_points.txt
 wsgiapptools.egg-info/not-zip-safe
 wsgiapptools.egg-info/top_level.txt
-wsgiapptools.egg-info/zip-safe
