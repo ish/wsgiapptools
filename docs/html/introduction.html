@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>About Convertish &mdash; Convertish v1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '',
+          VERSION:     '1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Convertish v1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to Convertish&#8217;s documentation!" href="index.html" /> 
+
+
+  <link media="screen" href="_static/css/screen.css" type="text/css" rel="stylesheet" />
+  <link media="screen" href="_static/css/images.css" type="text/css" rel="stylesheet" />
+  <link media="screen" href="_static/css/sIFR-screen.css" type="text/css" rel="stylesheet" />
+  <link media="print" href="_static/css/sIFR-print.css" type="text/css" rel="stylesheet" />  
+  <script type="text/javascript" src="_static/js/sifr.js" ></script>
+  <script type="text/javascript" src="_static/js/sifr-config.js" ></script> 
+  <script type="text/javascript" src="_static/js/sifr-debug.js" ></script> 
+
+  </head>
+  <body id="sphinx">
+    <div id="wrapper">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Convertish&#8217;s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Convertish v1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div id="header">
+      <div id="logo"><img src="_static/images/logo/ish.io.png" /></div>
+      <div id="overview"><a href="http://ish.io/projects/show/convertish">Overview</a></div>
+    </div>
+
+<div id="main">
+    <div  class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="about-convertish">
+<h1>About Convertish<a class="headerlink" href="#about-convertish" title="Permalink to this headline">¶</a></h1>
+<p>Convertish is a adapting library (using peak-rules) that converts from one type of object to another. It&#8217;s current implementation is wholy devoted to converting schemaish types and it implements string, dateparts, boolean and file conversion.</p>
+<div class="section" id="how-does-convertish-work">
+<h2>How does Convertish work?<a class="headerlink" href="#how-does-convertish-work" title="Permalink to this headline">¶</a></h2>
+<p>to convert from any schemaish type to a string, the type is passed to string_converter and the value is passed to the toType method.. e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">convertish.convert</span> <span class="kn">import</span> <span class="n">string_converter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">schemaish</span> <span class="kn">import</span> <span class="n">Integer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_converter</span><span class="p">(</span><span class="n">Integer</span><span class="p">())</span><span class="o">.</span><span class="n">fromType</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">&#39;1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_converter</span><span class="p">(</span><span class="n">Integer</span><span class="p">())</span><span class="o">.</span><span class="n">toType</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>We can do this with any schemaish type.. for instance here is a date being converted</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">schemaish</span> <span class="kn">import</span> <span class="n">Date</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_converter</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span><span class="o">.</span><span class="n">fromType</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mf">2008</span><span class="p">,</span><span class="mf">12</span><span class="p">,</span><span class="mf">18</span><span class="p">))</span>
+<span class="go">&#39;2008-12-18&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_converter</span><span class="p">(</span><span class="n">Date</span><span class="p">())</span><span class="o">.</span><span class="n">toType</span><span class="p">(</span><span class="s">&#39;2008-12-18&#39;</span><span class="p">)</span>
+<span class="go">datetime.date(2008, 12, 18)</span>
+</pre></div>
+</div>
+<p>This is used in formish&#8217;s widgets to serialise objects.</p>
+</div>
+<div class="section" id="the-convert-module">
+<h2>The Convert Module<a class="headerlink" href="#the-convert-module" title="Permalink to this headline">¶</a></h2>
+<p>Validate implements the following validators..</p>
+<dl class="class">
+<dt id="convertish.convert.NumberToStringConverter">
+<!--[convertish.convert.NumberToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">NumberToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.NumberToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.IntegerToStringConverter">
+<!--[convertish.convert.IntegerToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">IntegerToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.IntegerToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.FloatToStringConverter">
+<!--[convertish.convert.FloatToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">FloatToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.FloatToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.BooleanToStringConverter">
+<!--[convertish.convert.BooleanToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">BooleanToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.BooleanToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.DateToStringConverter">
+<!--[convertish.convert.DateToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">DateToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.DateToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.TimeToStringConverter">
+<!--[convertish.convert.TimeToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">TimeToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.TimeToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.FileToStringConverter">
+<!--[convertish.convert.FileToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">FileToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.FileToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.SequenceToStringConverter">
+<!--[convertish.convert.SequenceToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">SequenceToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.SequenceToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd>I&#8217;d really like to have the converter options on the init but ruledispatch won&#8217;t let me pass keyword arguments</dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.TupleToStringConverter">
+<!--[convertish.convert.TupleToStringConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">TupleToStringConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.TupleToStringConverter" title="Permalink to this definition">¶</a></dt>
+<dd>I&#8217;d really like to have the converter options on the init but ruledispatch won&#8217;t let me pass keyword arguments</dd></dl>
+
+<dl class="class">
+<dt id="convertish.convert.DateToDateTupleConverter">
+<!--[convertish.convert.DateToDateTupleConverter]-->class <tt class="descclassname">convertish.convert.</tt><tt class="descname">DateToDateTupleConverter</tt><big>(</big><em>schemaType</em>, <em>**k</em><big>)</big><a class="headerlink" href="#convertish.convert.DateToDateTupleConverter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">About Convertish</a><ul>
+<li><a class="reference external" href="#how-does-convertish-work">How does Convertish work?</a></li>
+<li><a class="reference external" href="#the-convert-module">The Convert Module</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html" title="previous chapter">Welcome to Convertish&#8217;s documentation!</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/introduction.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Convertish&#8217;s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Convertish v1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2008, Tim Parkin, Matt Goodall.
+    </div>
+  </div> 
+  </div>
+  </body>
+</html>

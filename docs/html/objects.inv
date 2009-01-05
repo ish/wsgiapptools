@@ -1,0 +1,13 @@
+# Sphinx inventory version 1
+# Project: Convertish
+# Version: 0.1
+convertish.convert.NumberToStringConverter class introduction.html
+convertish.convert.DateToDateTupleConverter class introduction.html
+convertish.convert.BooleanToStringConverter class introduction.html
+convertish.convert.IntegerToStringConverter class introduction.html
+convertish.convert.TupleToStringConverter class introduction.html
+convertish.convert.TimeToStringConverter class introduction.html
+convertish.convert.SequenceToStringConverter class introduction.html
+convertish.convert.FloatToStringConverter class introduction.html
+convertish.convert.FileToStringConverter class introduction.html
+convertish.convert.DateToStringConverter class introduction.html
