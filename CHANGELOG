@@ -2,8 +2,15 @@
 Changlelog
 ==========
 
+0.5.1 (2009-01-06)
+------------------
+
+Cleaning up code and repo
+
+* Checked with pylint for style problems. 
+* Added files as per pypi recommendations
 
 0.5 (2009-01-05)
 ----------------
 
-NOTE: First External Release
+First External Release
