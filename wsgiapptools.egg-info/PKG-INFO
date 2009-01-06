@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: wsgiapptools
-Version: 0.5
+Version: 0.5.1
 Summary: Collection of WSGI application tools
 Home-page: http://ish.io/projects/show/wsgiapptools
 Author: Tim Parkin, Matt Goodall

@@ -1,4 +1,11 @@
 .gitignore
+AUTHORS
+CHANGELOG
+FAQ
+INSTALL
+LICENSE
+README
+TODO
 setup.py
 wsgiapptools/README
 wsgiapptools/__init__.py
