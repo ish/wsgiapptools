@@ -5,7 +5,8 @@ A "flash" message is a message displayed on a web page that is removed next
 request.
 """
 
-__all__ = ['add_message', 'get_messages', 'get_flash', 'flash_middleware_factory']
+__all__ = ['add_message', 'get_messages', 'get_flash',
+           'flash_middleware_factory']
 
 
 import itertools
@@ -58,7 +59,7 @@ class Flash(object):
         """
         if type is None:
             type = ''
-        self.flashes.append('%s:%s'%(type, message))
+        self.flashes.append('%s:%s'% (type, message))
 
     def get_messages(self):
         """
@@ -68,7 +69,7 @@ class Flash(object):
         messages = []
         cookies_mgr = cookies.get_cookies(self.request.environ)
         for i in itertools.count():
-            cookie_name = '%s.%d'%(COOKIE_NAME, i)
+            cookie_name = '%s.%d'% (COOKIE_NAME, i)
             # Try to find the next message. Leave the loop if it does not exist.
             message = self.request.cookies.get(cookie_name)
             if message is None:
@@ -93,7 +94,7 @@ def flash_middleware_factory(app):
             flash = environ[ENVIRON_KEY]
             cookies_mgr = cookies.get_cookies(environ)
             for i, flash in enumerate(flash.flashes):
-                cookies_mgr.set_cookie(('%s.%d'%(COOKIE_NAME,i), flash))
+                cookies_mgr.set_cookie(('%s.%d'% (COOKIE_NAME, i), flash))
             # Call wrapped app's start_response.
             return start_response(status, response_headers, exc_info)
         environ[ENVIRON_KEY] = Flash(environ)

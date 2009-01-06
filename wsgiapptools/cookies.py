@@ -82,7 +82,8 @@ def cookies_middleware_factory(app):
         def _start_response(status, response_headers, exc_info=None):
             # Extend the headers with cookie setting headers.
             cutter = environ[ENVIRON_KEY]
-            response_headers.extend(('Set-Cookie', header) for header in cutter.headers)
+            response_headers.extend(('Set-Cookie', header) \
+                                    for header in cutter.headers)
             # Call wrapped app's start_response.
             return start_response(status, response_headers, exc_info)
         environ[ENVIRON_KEY] = Cookies(environ)
