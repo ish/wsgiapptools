@@ -1,10 +1,24 @@
 Metadata-Version: 1.0
 Name: wsgiapptools
-Version: 0.1dev
+Version: 0.5
 Summary: Collection of WSGI application tools
-Home-page: UNKNOWN
-Author: Matt Goodall
-Author-email: matt.goodall@gmail.com
-License: UNKNOWN
+Home-page: http://ish.io/projects/show/wsgiapptools
+Author: Tim Parkin, Matt Goodall
+Author-email: developers@ish.io
+License: BSD
 Description: UNKNOWN
+Keywords: wsgi,messages,cookie
 Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Environment :: Web Environment
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Widget Sets
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Browsers
