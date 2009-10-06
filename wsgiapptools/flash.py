@@ -72,7 +72,7 @@ class Flash(object):
             cookie_name = '%s.%d'% (COOKIE_NAME, i)
             # Try to find the next message. Leave the loop if it does not exist.
             message = self.request.cookies.get(cookie_name)
-            if message is None:
+            if not message:
                 break
             # Remove the cookie, presumably it will be displayed shortly.
             cookies_mgr.delete_cookie(cookie_name)
