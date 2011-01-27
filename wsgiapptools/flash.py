@@ -77,8 +77,13 @@ class Flash(object):
             # Remove the cookie, presumably it will be displayed shortly.
             cookies_mgr.delete_cookie(cookie_name)
             # Parse  and yield the message.
-            type, message = message.split(':', 1)
-            messages.append((type or None, message))
+            try:
+                type, message = message.split(':', 1)
+            except ValueError:
+                # Skip an unparseable cookie value.
+                pass
+            else:
+                messages.append((type or None, message))
         return messages
 
 
